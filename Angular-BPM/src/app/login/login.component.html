@@ -1,0 +1,88 @@
+<div class="back h-100" [style.background-image]="'url(../../assets/Images/'+currentBg+')'" [style.background-size.px]="1600">
+<div class="container h-100">
+  <div class="row h-100 align-items-center justify-content-center">
+    <div class="bg-gradient-primary col-md-5 bg-white">
+      <img src="assets/Images/eaiesb_logo.png" class="mx-auto d-block pt-3">
+    <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist" style="font-weight: bold;">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Login</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Sign up</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent" style="margin-top: 5px;">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <form>
+          <div class="form-group" style="padding-top: 10px;">
+            <input type="email" class="form-control input" placeholder="Username" id="emailLoginInput" (input)="username=$event.target.value">
+          </div>
+          <div class="form-group">
+            <input [ngClass]="token.length==0 ? 'input-false': 'input'" type="password" class="form-control input" placeholder="Password" id="passwordloginInput" (input)="password=$event.target.value">
+          </div>
+          <span *ngIf="token.length==0">
+            Wrong password. Please try again
+          </span>
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-login btn-1 text-white" (click)="userLogin()">Log In</button>
+          </div>
+        </form>
+      </div>
+      <div class="tab-pane fade text-center" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <form>
+          <div class="form-group" style="padding-top: 10px;">
+            <input type="text" class="input form-control" placeholder="First Name" id="fnameInput" (input)="firstname=$event.target.value">
+          </div>
+          <div class="form-group">
+            <input type="text" class="input form-control" placeholder="Last Name" id="lnameInput" (input)="lastname=$event.target.value">
+          </div>
+          <div class="form-group">
+            <input type="email" class="input form-control" placeholder="Username" id="emailSignUpInput" (input)="username=$event.target.value">
+          </div>
+          <div class="form-group">
+            <div class="input-group input-date">
+              <input type="text" class="form-control dobInput" placeholder="Date of Birth" style="border: none; padding: 0px;" [matDatepicker]="picker" (dateInput)="date=$event.target.value">
+              <div class="input-group-append">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              </div>
+              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="input form-control" placeholder="PAN ID" id="PANInput" (input)="pan=$event.target.value">
+          </div>
+          <div class="form-group">
+            <input type="text" class="input form-control" placeholder="Aadhar ID" id="aadharInput" (input)="aadhar=$event.target.value">
+          </div>
+          <div class="form-group">
+            <input type="text" class="input form-control" placeholder="Passport ID" id="passportInput" (input)="passport=$event.target.value">
+          </div>
+          <div class="form-group">
+            <input type="password" class="input form-control" placeholder="Enter your password" id="passwordSignUpInput" (input)="password=$event.target.value">
+          </div>
+          <div class="form-group">
+            <input type="password" class="input form-control" placeholder="Confirm password" id="passwordConfirnInput" (input)="cpassword=$event.target.value">
+          </div>
+          <div class="custom-file text-left d-flex" style="color: #686868;">
+            <label style="font-size: medium; margin-right: 30px;">Display Picture</label>
+            <input (change)="onFileSelect($event.target)" type="file" id="customFile" style="width: 188px">
+          </div>
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-login btn-1 text-white" (click)="postUserDetails()">Sign Up</button>
+          </div>
+          <span *ngIf="mismatch">
+            Passwords doesnt match
+          </span>
+          <span *ngIf="message=='User Added'" style="font-weight: bold; color: rgb(10, 129, 233) ;">
+            {{message}}
+          </span>
+          <span *ngIf="message=='Already Exists'" style="font-weight: bold; font-size: medium;">
+            {{message}}
+          </span>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
